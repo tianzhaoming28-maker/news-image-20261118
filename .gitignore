@@ -1,0 +1,3 @@
+# Local build artifact: the image ships embedded as base64 in main.ts
+# (regenerate with `node pack.mjs`); entry.png itself is not tracked.
+entry.png
