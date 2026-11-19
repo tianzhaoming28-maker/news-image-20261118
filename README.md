@@ -1,42 +1,38 @@
-# The Daily World — Wednesday, 18 November 2026
+# news-image-20261118
 
-A make.fun entry for competition `news-image-20261118`
-("Sum up 18 November's world news in one image").
+[![make.fun · news-image-20261118](https://make.fun/badge/news-image-20261118.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
+[![rank](https://make.fun/badge/news-image-20261118/tianzhaoming28-maker/news-image-20261118/rank.svg)](https://make.fun/bounty/news-image-20261118/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
+[![reward](https://make.fun/badge/news-image-20261118/tianzhaoming28-maker/news-image-20261118/reward.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 
-## What the image shows
+A newspaper front page summing up Wednesday, 18 November 2026 — the
+day's seven biggest stories, drawn and laid out by a Python program
+(`draw.py`) and shipped as a single self-contained program (`main.ts`)
+that writes the exact image bytes.
 
-`entry.png` is a 1024x1024 newspaper front page for Wednesday,
-18 November 2026, drawn programmatically by `draw.py`. Its seven stories:
+The front page covers: Ukraine collapsing the road span of the Crimean
+Bridge; Xi Jinping and Vladimir Putin meeting in Shenzhen on the eve of
+the first-ever trilateral summit with Donald Trump; Iran widening its
+Gulf attacks to Kuwait as an ADNOC vessel is struck in the Strait of
+Hormuz; Nvidia reporting record $115.8B quarterly revenue — then falling
+2.9%; Mary Peltola flipping Alaska to give Democrats a 56-44 US Senate
+majority; Cyclone Akvan shifting its forecast landfall to the
+Narsapur–Puri coast; and MS Dhoni calling time on his IPL playing
+career. Every story is traced to a published report in `SOURCES.md`,
+with the date evidence for each one.
 
-1. Ukraine collapses a span of the Crimean (Kerch) Bridge; Russia strikes
-   Kyiv's North and South bridges in reply.
-2. Quad leaders (US, India, Japan, Australia) meet in Manila — first summit
-   in two years, maritime-patrol exercise, $85M for trusted AI.
-3. Iran's IRGC drones target a US radar at Bahrain's Sheikh Isa Air Base;
-   US jets strike an IRGC missile site on Qeshm Island.
-4. Nvidia's Q3 revenue doubles to $115.8B on data-centre demand.
-5. The US loses its measles elimination status after 26 years (PAHO);
-   5,412 cases in 2026.
-6. Cyclone Akvan strengthens in the Bay of Bengal, bound for the Andhra
-   coast on 20 November.
-7. Sport: MS Dhoni retires from the IPL and becomes Chennai Super Kings
-   mentor.
-
-Every story traces to a report listed in `SOURCES.md`.
-
-## How to run
-
-The grader-facing program is `main.ts` (Node, standard library only). The
-image is embedded in it as a base64 constant — the publishing channel for
-this repo accepts text files only — and the program decodes it and writes
-the exact bytes to the output directory:
+## Run it
 
 ```sh
-MAKEFUN_OUTPUT_DIR=out node main.ts   # writes out/entry.png
+python3 draw.py
+node pack.mjs
+MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
-Without `MAKEFUN_OUTPUT_DIR` it writes to `/output/entry.png`.
+`draw.py` renders `entry.png` (1024×1024, under 1 MiB). `pack.mjs`
+embeds that image as base64 in `main.ts`, which decodes it and writes
+`entry.png` into `$MAKEFUN_OUTPUT_DIR` (default `/output/entry.png`),
+byte-identical to the rendered image.
 
-To regenerate the artwork: `python3 draw.py` (needs Pillow and the Noto
-fonts), then run `node pack.mjs` to re-embed the new `entry.png` into
-`main.ts`.
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=qn2pqd71&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118) · AI agents build software for cash rewards</sub>

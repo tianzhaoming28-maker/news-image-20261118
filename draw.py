@@ -124,48 +124,73 @@ def icon_cricket(d, x, y, s, c):
     d.text((x + s * 0.06, y + s * 0.06), "7", font=font(SANS_BOLD, 30), fill=c)
 
 
+def icon_summit(d, x, y, s, c):
+    pts = [(x + s * 0.50, y + s * 0.24), (x + s * 0.24, y + s * 0.72),
+           (x + s * 0.76, y + s * 0.72)]
+    for (ax, ay), (bx, by) in ((pts[0], pts[1]), (pts[0], pts[2]), (pts[1], pts[2])):
+        d.line([ax, ay, bx, by], fill=c, width=4)
+    for (cx, cy) in pts:
+        r = s * 0.13
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=c, width=5)
+
+
+def icon_capitol(d, x, y, s, c):
+    cx = x + s * 0.5
+    d.line([cx, y + s * 0.08, cx, y + s * 0.26], fill=c, width=4)
+    d.ellipse([cx - 6, y + s * 0.05, cx + 6, y + s * 0.17], fill=c)
+    d.arc([x + s * 0.28, y + s * 0.26, x + s * 0.72, y + s * 0.62], 180, 360, fill=c, width=5)
+    d.line([x + s * 0.28, y + s * 0.62, x + s * 0.72, y + s * 0.62], fill=c, width=5)
+    d.line([x + s * 0.18, y + s * 0.72, x + s * 0.82, y + s * 0.72], fill=c, width=5)
+    d.line([x + s * 0.14, y + s * 0.82, x + s * 0.86, y + s * 0.82], fill=c, width=5)
+
+
 ICONS = {
     "bridge": icon_bridge, "quad": icon_quad, "drone": icon_drone,
     "chart": icon_chart, "virus": icon_virus, "cyclone": icon_cyclone,
-    "cricket": icon_cricket,
+    "cricket": icon_cricket, "summit": icon_summit, "capitol": icon_capitol,
 }
 
 # ---------------------------------------------------------------- stories
 # (tag, accent, icon, headline, body) — facts per SOURCES.md.
+# v2 (final, 19 Nov evening): refreshed to the full day of 18 Nov 2026.
+# The Quad summit (17 Nov) and the measles announcement (17 Nov) make way
+# for the two biggest genuine 18 Nov developments: the Shenzhen summit and
+# the Alaska Senate call. The bridge, Gulf, Nvidia, Akvan and Dhoni stories
+# are updated with what happened during 18 Nov.
 
 LEAD = ("UKRAINE WAR — EUROPE", RED, "bridge",
         "Ukraine collapses Crimean Bridge span",
-        "Missiles and drones destroyed the road arch of the 19-km Kerch Bridge to Crimea "
-        "and halted traffic, Kyiv says. In reply, Russia struck Kyiv's North and South "
-        "bridges, cutting heat and water in the capital.")
+        "Missiles and drones destroyed the road arch of the 19-km Kerch Bridge "
+        "and halted traffic, Kyiv says. The Kremlin vows to rebuild it; "
+        "analysts say the road span will not be fixed during the war.")
 
 ROW2 = [
-    ("SUMMIT — MANILA", (31, 58, 95), "quad",
-     "Quad leaders meet in Manila",
-     "First summit in 2 years: mineral deals, a joint sea-patrol exercise, "
-     "$85M for trusted AI."),
-    ("GULF — BAHRAIN & IRAN", (146, 64, 14), "drone",
-     "Iran drones target US radar in Bahrain",
-     "3rd IRGC attack in 5 days on Sheikh Isa base; drones downed, no damage — US. "
-     "US jets hit Qeshm IRGC site."),
+    ("SUMMIT — SHENZHEN", (31, 58, 95), "summit",
+     "Xi and Putin meet before Trump trilateral",
+     "Fifth Xi-Putin talks this year in Shenzhen; Trump lands for Thursday's "
+     "first three-way summit."),
+    ("GULF — KUWAIT & BAHRAIN", (146, 64, 14), "drone",
+     "Iran widens Gulf attacks to Kuwait",
+     "Drones target US kit at Ali Al Salem; Bahrain hit again. ADNOC ship "
+     "struck in Hormuz: 1 missing, 11 hurt."),
 ]
 
 ROW3 = [
     ("MARKETS — AI CHIPS", (21, 101, 80), "chart",
-     "Nvidia revenue doubles to $115.8B",
-     "Q3 sales up 103%; data-centre revenue $107.6B; Q4 guided to $130B. "
-     "First results since Huang resigned 12 Nov."),
-    ("HEALTH — AMERICAS", (122, 31, 62), "virus",
-     "US loses measles-free status",
-     "PAHO ends the status held since 2000; Mexico and Bolivia lose theirs too. "
-     "5,412 US cases in 2026 — most in 35 years."),
+     "Nvidia beats, then falls 2.9%",
+     "Record Q3 revenue $115.8B, up 103%; Q4 guided to $130B. Shares still "
+     "fell 2.9% to $150.96."),
+    ("POLITICS — US SENATE", (122, 31, 62), "capitol",
+     "Peltola flips Alaska; Democrats 56-44",
+     "AP calls the last Senate race: Peltola beats Sullivan. Nine flips — "
+     "the biggest midterm gain since 1958."),
 ]
 
 ROW4 = [
     ("CLIMATE — BAY OF BENGAL", (14, 92, 134), "cyclone",
-     "Cyclone Akvan bears down on Andhra coast",
-     "A severe storm, due ashore 20 Nov between Nellore and Tuni: "
-     "120–130 km/h winds, gusting 145."),
+     "Cyclone Akvan shifts track north",
+     "Due ashore 20 Nov between Narsapur and Puri: 90-100 km/h, gusting "
+     "110. Evacuations under way."),
 ]
 
 SPORT = ("SPORT — CRICKET", (146, 104, 10), "cricket",
@@ -205,7 +230,7 @@ def main():
     centered(d, W / 2, 36, "THE  DAILY  WORLD", font(SERIF_BLACK, 66), INK)
     d.line([34, 118, W - 34, 118], fill=INK, width=2)
     centered(d, W / 2, 126, "Wednesday, 18 November 2026", font(SERIF_BOLD, 43), RED)
-    centered(d, W / 2, 182, "THE DAY'S BIGGEST STORIES — WAR • DIPLOMACY • GULF • MARKETS • HEALTH • CLIMATE • SPORT",
+    centered(d, W / 2, 182, "THE DAY'S BIGGEST STORIES — WAR • DIPLOMACY • GULF • MARKETS • POLITICS • CLIMATE • SPORT",
              font(SANS_BOLD, 16), GREY)
     d.line([34, 208, W - 34, 208], fill=INK, width=3)
 
@@ -227,7 +252,7 @@ def main():
     # ---- footer
     d.line([34, 988, W - 34, 988], fill=INK, width=2)
     centered(d, W / 2, 994,
-             "From reports by Reuters, CNN, Nikkei Asia, Al Jazeera, Gulf News, the IMD and The Hindu",
+             "From reports by Reuters, Al Jazeera, Dawn, Gulf News, The National, AP, the IMD and The Hindu",
              font(SANS, 15), GREY)
 
     img.save("entry.png", optimize=True)
